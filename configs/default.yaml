@@ -1,0 +1,6 @@
+seed: 42
+classifier_test_fraction: 0.2
+tree_count: 100
+workers: 2
+regression_validation_years: 2
+regression_test_years: 2

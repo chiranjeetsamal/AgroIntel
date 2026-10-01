@@ -1,0 +1,46 @@
+[
+  {
+    "file": "crop.csv",
+    "url": "https://www.kaggle.com/api/v1/datasets/download/atharvaingle/crop-recommendation-dataset",
+    "publisher": "Atharva Ingle / Kaggle",
+    "licence": "See Kaggle data card; raw data excluded from deliverable",
+    "downloaded_at": "2026-10-01T07:09:44.762151+00:00",
+    "sha256": "54a5a6e5408668e668667efc50de2fc867c1b875e0431b4f54dd331b0a109a4e",
+    "shape": [
+      2200,
+      8
+    ],
+    "columns": [
+      "N",
+      "P",
+      "K",
+      "temperature",
+      "humidity",
+      "ph",
+      "rainfall",
+      "label"
+    ]
+  },
+  {
+    "file": "production.csv",
+    "url": "https://raw.githubusercontent.com/k0rn/India_Agri_Data/master/agridata.csv",
+    "publisher": "k0rn; attributed to Government of India",
+    "licence": "Repository CC0; original provenance incomplete",
+    "downloaded_at": "2026-10-01T07:09:51.236011+00:00",
+    "sha256": "70d06377b6375d75474c83a560613cc168dfe17474ca63d97189255779a0cf91",
+    "shape": [
+      175628,
+      8
+    ],
+    "columns": [
+      "state",
+      "district",
+      "crop",
+      "year",
+      "season",
+      "area",
+      "production",
+      "yield"
+    ]
+  }
+]

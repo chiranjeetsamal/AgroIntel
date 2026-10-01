@@ -1,0 +1,46 @@
+{
+  "recommendations": [
+    {
+      "crop": "rice",
+      "suitability_probability": 0.9296688977500507,
+      "estimated_yield": 2.5381562209466413,
+      "yield_unit": "tonnes/hectare",
+      "yield_status": "supported",
+      "explanation": {
+        "status": "local_explanation_deferred"
+      }
+    },
+    {
+      "crop": "jute",
+      "suitability_probability": 0.033962267822416355,
+      "estimated_yield": null,
+      "yield_unit": "tonnes/hectare",
+      "yield_status": "crop_unavailable",
+      "explanation": {
+        "status": "local_explanation_deferred"
+      }
+    },
+    {
+      "crop": "maize",
+      "suitability_probability": 0.0023225010144126454,
+      "estimated_yield": 3.6749802826289812,
+      "yield_unit": "tonnes/hectare",
+      "yield_status": "supported",
+      "explanation": {
+        "status": "local_explanation_deferred"
+      }
+    }
+  ],
+  "warnings": [
+    "jute: crop_unavailable"
+  ],
+  "classifier_version": "0.1.0",
+  "regressor_version": "0.1.0",
+  "training_data_coverage": {
+    "yield_years": [
+      1998,
+      2010
+    ],
+    "crop_classes": 22
+  }
+}

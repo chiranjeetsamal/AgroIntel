@@ -1,6 +1,6 @@
 # AgroIntel
 
-Explainable crop recommendation and regional yield forecasting. Foundations of Data Science, BCSE206L. SCOPE & SENSE.
+Explainable crop recommendation and regional yield forecasting. Foundations of Data Science, BCSE206L. Student A — [registration omitted]; Student B — [registration omitted]; SCOPE & SENSE.
 
 ## Setup (Python 3.11 or newer)
 
