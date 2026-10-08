@@ -1,0 +1,7 @@
+# Replace the two absolute paths if you move the project.
+# Merge only this table into your Codex config; do not replace other settings.
+[mcp_servers.agrointel]
+command = 'E:/codex/FDS/agrointel/.venv/Scripts/python.exe'
+args = ['E:/codex/FDS/agrointel/scripts/run_mcp.py']
+startup_timeout_sec = 30
+tool_timeout_sec = 60

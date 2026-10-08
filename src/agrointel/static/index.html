@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgroIntel · Crop intelligence</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#"
+        >Agro<span>Intel</span><small>FIELD NOTES / DATA SCIENCE</small></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="#workspace">Predict</a><a href="#weather">Weather</a
+        ><a href="#model">The model</a
+        ><span id="health" class="badge">Connecting…</span>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">BETTER QUESTIONS. INFORMED CHOICES.</p>
+          <h1>What could grow<br />here?</h1>
+          <p class="intro">
+            Explore crop suitability and historical regional yield—from soil
+            readings to a clearer starting point.
+          </p>
+        </div>
+        <aside class="hero-note">
+          <span class="note-number">01 / 02</span>
+          <h2>Suitability first.<br />Yield, where supported.</h2>
+          <p>
+            Two trained models. Three ranked crops. Honest boundaries around
+            what the data can tell us.
+          </p>
+          <p class="fine">Academic decision support · not agronomic advice</p>
+        </aside>
+      </section>
+      <section class="metrics" aria-label="Held-out results">
+        <div>
+          <strong id="accuracy">—</strong><span>Crop benchmark accuracy</span>
+        </div>
+        <div><strong id="r2">—</strong><span>Historical yield R²</span></div>
+        <div>
+          <strong>22 / 9</strong><span>Crop classes / yield categories</span>
+        </div>
+        <div>
+          <strong>1998–2010</strong><span>Yield training coverage</span>
+        </div>
+      </section>
+      <section id="workspace" class="workspace">
+        <div class="input-panel">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">01 / YOUR INPUTS</p>
+              <h2>Set the conditions</h2>
+            </div>
+            <button id="load-example" type="button" class="text-button">
+              Load demo ↗
+            </button>
+          </div>
+          <p class="fine">
+            Use measured values, or load the historical demo. Nutrient units and
+            rainfall period in the benchmark are unverified.
+          </p>
+          <form id="prediction-form">
+            <fieldset>
+              <legend>Soil & climate</legend>
+              <div class="fields">
+                <label
+                  >Nitrogen <span>benchmark scale</span
+                  ><input
+                    name="nitrogen"
+                    type="number"
+                    min="0"
+                    step="any"
+                    required
+                /></label>
+                <label
+                  >Phosphorus <span>benchmark scale</span
+                  ><input
+                    name="phosphorus"
+                    type="number"
+                    min="0"
+                    step="any"
+                    required
+                /></label>
+                <label
+                  >Potassium <span>benchmark scale</span
+                  ><input
+                    name="potassium"
+                    type="number"
+                    min="0"
+                    step="any"
+                    required
+                /></label>
+                <label
+                  >Soil pH <span>0–14</span
+                  ><input
+                    name="ph"
+                    type="number"
+                    min="0"
+                    max="14"
+                    step="any"
+                    required
+                /></label>
+                <label
+                  >Temperature <span>°C</span
+                  ><input
+                    name="temperature"
+                    type="number"
+                    min="-50"
+                    max="65"
+                    step="any"
+                    required
+                /></label>
+                <label
+                  >Humidity <span>%</span
+                  ><input
+                    name="humidity"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="any"
+                    required
+                /></label>
+                <label
+                  >Rainfall <span>benchmark mm, not today's rain</span
+                  ><input
+                    name="rainfall"
+                    type="number"
+                    min="0"
+                    step="any"
+                    required
+                /></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Historical regional context</legend>
+              <p class="fine">
+                Use historical source labels; present-day borders may differ.
+              </p>
+              <div class="fields">
+                <label
+                  >State<select id="state" name="state" required>
+                    <option value="">Choose state</option>
+                  </select></label
+                >
+                <label
+                  >District<select
+                    id="district"
+                    name="district"
+                    required
+                    disabled
+                  >
+                    <option value="">Choose district</option>
+                  </select></label
+                >
+                <label
+                  >Season<select id="season" name="season" required disabled>
+                    <option value="">Choose season</option>
+                  </select></label
+                >
+                <label
+                  >Year<input
+                    name="year"
+                    type="number"
+                    min="1900"
+                    max="2200"
+                    step="1"
+                    required
+                /></label>
+                <label
+                  >Area <span>hectares</span
+                  ><input
+                    name="area"
+                    type="number"
+                    min="0.000001"
+                    step="any"
+                    required
+                /></label>
+              </div>
+            </fieldset>
+            <button class="primary" id="predict-button" type="submit">
+              Find suitable crops <span>→</span>
+            </button>
+            <p
+              id="form-status"
+              role="status"
+              aria-live="polite"
+              class="fine"
+            ></p>
+          </form>
+        </div>
+        <div class="output-panel">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">02 / MODEL OUTPUT</p>
+              <h2>Your shortlist</h2>
+            </div>
+            <span class="badge muted">Top three</span>
+          </div>
+          <div id="empty-state" class="empty-state">
+            <div class="seed-symbol" aria-hidden="true">↗</div>
+            <h3>A starting point, not a verdict.</h3>
+            <p>
+              Enter the conditions to compare three crops. Yield estimates
+              appear only for supported region–crop–season combinations.
+            </p>
+          </div>
+          <div id="results" hidden>
+            <div id="recommendations"></div>
+            <section class="warning-box" id="warning-box" hidden>
+              <h3>Keep in mind</h3>
+              <ul id="warnings"></ul>
+            </section>
+            <div class="exports">
+              <button id="export-json" class="secondary" type="button">
+                Download JSON</button
+              ><button id="export-csv" class="secondary" type="button">
+                Download CSV
+              </button>
+            </div>
+            <p class="fine">
+              Suitability probabilities describe benchmark patterns, not the
+              likelihood of farm success. Yield does not change the suitability
+              ranking.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="weather" class="weather-section">
+        <div>
+          <p class="eyebrow">OPTIONAL / CURRENT CONTEXT</p>
+          <h2>A look at the weather</h2>
+          <p>
+            Current modeled weather from Open-Meteo. Checking sends the
+            coordinates to that provider. Nothing is copied into the prediction
+            form.
+          </p>
+          <p class="fine">
+            Instantaneous precipitation is not comparable to the benchmark
+            rainfall feature.
+          </p>
+        </div>
+        <div>
+          <form id="weather-form">
+            <div class="fields">
+              <label
+                >Latitude<input
+                  name="latitude"
+                  type="number"
+                  min="-90"
+                  max="90"
+                  step="any"
+                  placeholder="12.97"
+                  required /></label
+              ><label
+                >Longitude<input
+                  name="longitude"
+                  type="number"
+                  min="-180"
+                  max="180"
+                  step="any"
+                  placeholder="77.59"
+                  required
+              /></label>
+            </div>
+            <button id="weather-button" class="secondary" type="submit">
+              Check current weather ↗
+            </button>
+          </form>
+          <p
+            id="weather-output"
+            role="status"
+            aria-live="polite"
+            class="weather-output"
+          >
+            Weather is optional. Predictions work offline.
+          </p>
+        </div>
+      </section>
+      <section id="model" class="model-section">
+        <p class="eyebrow">BEHIND THE OUTPUT</p>
+        <h2>Built to be inspected.</h2>
+        <div class="model-grid">
+          <article>
+            <span>01</span>
+            <h3>Two tasks, two datasets</h3>
+            <p>
+              2,200 crop records describe soil and climate. Approximately 51,700
+              cleaned regional records describe historical yield. They are not
+              joined as observations from the same farm.
+            </p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Test data stays separate</h3>
+            <p>
+              Stratified crop testing and chronological yield testing. Extra
+              Trees models selected against baselines; classifier probabilities
+              calibrated on training data. Production never enters the yield
+              prediction inputs.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Explain, without overclaiming</h3>
+            <p>
+              Local sensitivity replaces one input at a time with its training
+              median. It shows how this particular prediction changes—not
+              causality, and not additive SHAP attribution.
+            </p>
+          </article>
+        </div>
+        <details>
+          <summary>Evaluation, sources & limitations</summary>
+          <div id="model-details"></div>
+          <p>
+            <a
+              href="https://www.kaggle.com/datasets/atharvaingle/crop-recommendation-dataset"
+              target="_blank"
+              rel="noopener"
+              >Crop benchmark ↗</a
+            >
+            ·
+            <a
+              href="https://github.com/k0rn/India_Agri_Data"
+              target="_blank"
+              rel="noopener"
+              >Regional snapshot ↗</a
+            >
+          </p>
+          <p class="fine">
+            The regional snapshot is community-maintained and attributed to
+            government records. Historical yield estimates do not capture
+            present-day management, irrigation, pests or changing climate. Live
+            weather is not part of the trained yield model.
+          </p>
+        </details>
+      </section>
+    </main>
+    <footer>
+      <span>AgroIntel / Foundations of Data Science</span
+      ><span>Measure. Compare. Understand the limits.</span>
+    </footer>
+  </body>
+</html>

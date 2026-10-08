@@ -1,0 +1,237 @@
+{
+  "checked_at": "2026-10-08T07:14:19.547049+00:00",
+  "transport": "stdio",
+  "tools": [
+    "predict_crop_and_yield",
+    "get_model_info",
+    "list_supported_locations",
+    "get_live_weather"
+  ],
+  "prediction": {
+    "recommendations": [
+      {
+        "crop": "rice",
+        "suitability_probability": 0.9296688977500507,
+        "estimated_yield": 2.5381562209466413,
+        "yield_unit": "tonnes/hectare",
+        "yield_status": "supported",
+        "explanation": {
+          "method": "one_feature_median_replacement",
+          "reference_source": "classifier training partition medians",
+          "features": [
+            {
+              "feature": "temperature",
+              "input": 20.87974371,
+              "reference": 25.51865526,
+              "probability_delta": 0.702772969572988
+            },
+            {
+              "feature": "rainfall",
+              "input": 202.9355362,
+              "reference": 94.77256285,
+              "probability_delta": 0.6392583633456659
+            },
+            {
+              "feature": "N",
+              "input": 90.0,
+              "reference": 37.0,
+              "probability_delta": 0.22265243064527684
+            },
+            {
+              "feature": "K",
+              "input": 43.0,
+              "reference": 32.0,
+              "probability_delta": 0.01016814586057535
+            },
+            {
+              "feature": "humidity",
+              "input": 82.00274423,
+              "reference": 80.54232197,
+              "probability_delta": -0.0034641594575591794
+            },
+            {
+              "feature": "ph",
+              "input": 6.502985292000001,
+              "reference": 6.431477621500001,
+              "probability_delta": -0.0031319876444021455
+            },
+            {
+              "feature": "P",
+              "input": 42.0,
+              "reference": 51.0,
+              "probability_delta": -0.0020674241338318744
+            }
+          ],
+          "interpretation": "Positive delta: the supplied value supports this crop relative to replacing it with the training median. Deltas do not sum to the probability and are not causal or SHAP values."
+        },
+        "yield_explanation": {
+          "method": "numeric_feature_median_replacement",
+          "features": [
+            {
+              "feature": "year",
+              "input": 2010,
+              "reference": 2004.0,
+              "yield_delta": 0.21487170457440685
+            },
+            {
+              "feature": "area",
+              "input": 66400.0,
+              "reference": 1702.5,
+              "yield_delta": 0.07265685561641666
+            }
+          ],
+          "interpretation": "Sensitivity in tonnes/hectare, keeping crop and geography fixed. Not causal. Categorical substitutions are omitted to avoid inventing unsupported locations."
+        }
+      },
+      {
+        "crop": "jute",
+        "suitability_probability": 0.033962267822416355,
+        "estimated_yield": null,
+        "yield_unit": "tonnes/hectare",
+        "yield_status": "crop_unavailable",
+        "explanation": {
+          "method": "one_feature_median_replacement",
+          "reference_source": "classifier training partition medians",
+          "features": [
+            {
+              "feature": "temperature",
+              "input": 20.87974371,
+              "reference": 25.51865526,
+              "probability_delta": -0.7008385021745084
+            },
+            {
+              "feature": "rainfall",
+              "input": 202.9355362,
+              "reference": 94.77256285,
+              "probability_delta": -0.1426549617432868
+            },
+            {
+              "feature": "K",
+              "input": 43.0,
+              "reference": 32.0,
+              "probability_delta": 0.011230082805918525
+            },
+            {
+              "feature": "N",
+              "input": 90.0,
+              "reference": 37.0,
+              "probability_delta": -0.010283584670483556
+            },
+            {
+              "feature": "humidity",
+              "input": 82.00274423,
+              "reference": 80.54232197,
+              "probability_delta": 0.00341947179324981
+            },
+            {
+              "feature": "ph",
+              "input": 6.502985292000001,
+              "reference": 6.431477621500001,
+              "probability_delta": 0.0033615786042107895
+            },
+            {
+              "feature": "P",
+              "input": 42.0,
+              "reference": 51.0,
+              "probability_delta": 0.0019617326743909536
+            }
+          ],
+          "interpretation": "Positive delta: the supplied value supports this crop relative to replacing it with the training median. Deltas do not sum to the probability and are not causal or SHAP values."
+        },
+        "yield_explanation": null
+      },
+      {
+        "crop": "maize",
+        "suitability_probability": 0.0023225010144126454,
+        "estimated_yield": 3.6749802826289812,
+        "yield_unit": "tonnes/hectare",
+        "yield_status": "supported",
+        "explanation": {
+          "method": "one_feature_median_replacement",
+          "reference_source": "classifier training partition medians",
+          "features": [
+            {
+              "feature": "rainfall",
+              "input": 202.9355362,
+              "reference": 94.77256285,
+              "probability_delta": -0.061755741598141886
+            },
+            {
+              "feature": "N",
+              "input": 90.0,
+              "reference": 37.0,
+              "probability_delta": -0.006861578208180567
+            },
+            {
+              "feature": "K",
+              "input": 43.0,
+              "reference": 32.0,
+              "probability_delta": -0.001958257715943001
+            },
+            {
+              "feature": "ph",
+              "input": 6.502985292000001,
+              "reference": 6.431477621500001,
+              "probability_delta": -8.93317787324377e-05
+            },
+            {
+              "feature": "temperature",
+              "input": 20.87974371,
+              "reference": 25.51865526,
+              "probability_delta": 1.3400204317738293e-05
+            },
+            {
+              "feature": "P",
+              "input": 42.0,
+              "reference": 51.0,
+              "probability_delta": 1.0913335231818415e-05
+            },
+            {
+              "feature": "humidity",
+              "input": 82.00274423,
+              "reference": 80.54232197,
+              "probability_delta": 2.855845631418146e-06
+            }
+          ],
+          "interpretation": "Positive delta: the supplied value supports this crop relative to replacing it with the training median. Deltas do not sum to the probability and are not causal or SHAP values."
+        },
+        "yield_explanation": {
+          "method": "numeric_feature_median_replacement",
+          "features": [
+            {
+              "feature": "year",
+              "input": 2010,
+              "reference": 2004.0,
+              "yield_delta": 0.7822233010456108
+            },
+            {
+              "feature": "area",
+              "input": 66400.0,
+              "reference": 1702.5,
+              "yield_delta": -0.19310409160418818
+            }
+          ],
+          "interpretation": "Sensitivity in tonnes/hectare, keeping crop and geography fixed. Not causal. Categorical substitutions are omitted to avoid inventing unsupported locations."
+        }
+      }
+    ],
+    "warnings": [
+      "jute: crop_unavailable"
+    ],
+    "classifier_version": "0.1.0",
+    "regressor_version": "0.1.0",
+    "training_data_coverage": {
+      "yield_years": [
+        1998,
+        2010
+      ],
+      "crop_classes": 22
+    },
+    "application_version": "1.0.0",
+    "limitations": [
+      "Benchmark probabilities are not probabilities of farm success.",
+      "Regional yield estimates use historical 1998\u20132010 training data, not modern field measurements.",
+      "Local sensitivity explanations are not causal effects or additive SHAP values."
+    ]
+  }
+}

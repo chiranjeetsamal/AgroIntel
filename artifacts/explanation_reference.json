@@ -1,0 +1,19 @@
+{
+  "method": "one_feature_median_replacement",
+  "classifier_medians": {
+    "N": 37.0,
+    "P": 51.0,
+    "K": 32.0,
+    "temperature": 25.51865526,
+    "humidity": 80.54232197,
+    "ph": 6.431477621500001,
+    "rainfall": 94.77256285
+  },
+  "regressor_medians": {
+    "year": 2004.0,
+    "area": 1702.5
+  },
+  "classifier_rows": 1760,
+  "regressor_rows": 49404,
+  "note": "Training-only reference values; no test records used. Non-causal sensitivity, not SHAP."
+}

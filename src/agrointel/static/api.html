@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AgroIntel · API reference</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/api.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">Agro<span>Intel</span></a
+      ><a href="/">Back to dashboard</a>
+    </header>
+    <main>
+      <section class="model-section api-reference">
+        <p class="eyebrow">DEVELOPER REFERENCE / V1.0</p>
+        <h1>One prediction.<br />Three entry points.</h1>
+        <p>
+          The browser, CLI and MCP tools use the same validation and trained
+          models. This explorer works offline with your local server.
+        </p>
+        <p><a href="/openapi.json">Full OpenAPI schema</a></p>
+        <h2>Endpoints</h2>
+        <ul>
+          <li>GET /api/health — model readiness</li>
+          <li>GET /api/model-info — scope, metrics and limitations</li>
+          <li>
+            GET /api/coverage?state=…&district=…&season=… — historical coverage
+          </li>
+          <li>GET /api/example — historical demonstration input</li>
+          <li>
+            GET /api/weather?latitude=…&longitude=… — optional external weather
+            context
+          </li>
+          <li>
+            POST /api/predict?explain=true — required JSON request, ranked
+            crops, supported yields, explanations and warnings
+          </li>
+        </ul>
+        <h2>Try a prediction</h2>
+        <p>
+          All twelve fields are required. Unknown fields, numeric strings,
+          invalid ranges and non-finite numbers are rejected. Year must be a
+          JSON integer. Errors return 422; weather failures return 503.
+        </p>
+        <button id="api-load" type="button" class="secondary">
+          Load example
+        </button>
+        <form id="api-form">
+          <label for="api-input">JSON request</label
+          ><textarea
+            id="api-input"
+            rows="18"
+            required
+            spellcheck="false"
+            aria-describedby="api-status"
+          ></textarea
+          ><button id="api-submit" type="submit" class="primary">
+            Send local prediction →
+          </button>
+        </form>
+        <p id="api-status" role="status" aria-live="polite"></p>
+        <h2>Response</h2>
+        <pre id="api-output">
+Load the example and submit to see the response.</pre
+        >
+        <p class="fine">
+          Not agronomic advice. Crop probabilities are benchmark suitability;
+          yield is historical. No input data are stored by the server.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

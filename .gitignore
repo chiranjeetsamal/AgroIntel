@@ -4,3 +4,11 @@ __pycache__/
 *.egg-info/
 data/raw/
 data/processed/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
+*.zip
+.env
+dist/
+build/
