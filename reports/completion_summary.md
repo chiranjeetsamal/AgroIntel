@@ -19,6 +19,7 @@ Verified on 8 October 2026, Python 3.12.14, Windows.
 - Ruff formatting/lint passed; pip reports no broken requirements.
 - Browser verified historical demo prediction, explanation expansion, JSON export, clearing stale results after input changes, historical-coverage warning and mobile layout without horizontal overflow.
 - Independent MCP client evidence is saved in mcp_smoke.json.
+- GitHub CI passed on Windows and Linux for the completed public source, including dependency installation, all 35 tests, Ruff, CLI prediction and the real MCP smoke test: https://github.com/chiranjeetsamal/AgroIntel/actions/runs/37742943414
 - Real Open-Meteo request succeeded for coarse public Bengaluru coordinates (12.97, 77.59). These are test coordinates, not the user's location.
 
 ## Unchanged held-out model results
@@ -27,6 +28,6 @@ Crop accuracy 99.55%, top-three accuracy 100%, macro-F1 approximately 0.99545 (4
 
 ## Honest boundaries
 
-This is a completed local academic application, not a production farm advisory service. Public cloud hosting, authentication/TLS and present-day agronomic validation are not included or claimed. Docker is not installed on this host, so its provided recipe has not been executed. The CI workflow is configured, not claimed to have run remotely. The test environment emits a Starlette deprecation warning about its httpx test adapter; it does not affect the passing functional tests.
+This is a completed local academic application, not a production farm advisory service. Public cloud hosting, authentication/TLS and present-day agronomic validation are not included or claimed. Docker is not installed on this host, so its provided recipe has not been executed. The test environment emits a Starlette deprecation warning about its httpx test adapter; it does not affect the passing functional tests.
 
 Student names and existing report details in the local project were preserved. Public publishing uses separate privacy-redacted text copies, leaving local identity details untouched. Raw datasets, virtual environments and Git history are excluded from delivery archives and public uploads.
